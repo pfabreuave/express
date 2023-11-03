@@ -1,0 +1,466 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    outline: none;
+  }
+  
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type=number] {
+    --moz-appearance:textfield;
+  }
+  
+  .sel1 {
+    flex: 1;
+  
+  } 
+  
+  .numeroComandaInput {
+  
+    font-size: 20px;
+    font-weight: 600;
+    width:40px
+  
+  }
+  
+  select {
+    font-size: 29px;
+  }
+  
+  .tot1 {
+    flex: 1;
+    font-size: 30px;
+  }
+  
+  .marbut {
+  
+    margin-bottom: 10px;
+  
+  }
+  
+  
+  .comand{
+    
+    font-weight: bold;
+  
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  @media (max-width: 370px) {
+    #main-container {
+        width: 90%; 
+    }
+  }
+  
+  /* 
+  @media (max-width: 768px) {
+    #main-container {
+        width: 80%; 
+    }
+  }
+  
+  @media (max-width: 992px) {
+    #main-container {
+        width: 70%; 
+    }
+  } */
+  
+  body {
+    /* min-height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: 'poppins', sans-serif;
+    /* background-color: rgb(255, 97, 5); */
+    background-color: white;
+  }
+  
+  #main-container {
+    width: 100%; 
+      max-width: 100%;  
+  }
+  
+  main {
+    /* background-color: rgb(255, 97, 5); */
+    background-color: white;
+    width: 700px; 	
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  
+  .newItem {
+    display: flex; 
+    flex-direction: row;
+  }
+  
+  
+  .resume,
+  .newItem,
+  .setItem {
+    width: 100%;
+    /* max-width: 700px;  */
+    margin-top: 20px;
+  }
+  
+  .resume > div,
+  .newItem > div,
+  .setItem > button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .resume {
+    background-color: rgb(170, 105, 26);
+    margin-top: 5%;
+    display: flex;
+    padding: 10px 0;
+    gap: 40px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .resume > div {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+  }
+  
+  .newItem {
+    margin-top: 3%;
+    margin-bottom: 2%;
+    background-color: rgb(170, 105, 26);
+    display: flex;
+    gap: 10px;
+    align-items: end;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .divDesc, .divType, .divAmount {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .newItem > button {
+    background-color: #2C73D2;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 34px;
+  }
+  
+  input, select {
+    padding: 5px;
+  }
+  
+  .divTable {
+    margin-top: 5%;
+    background-color: rgb(170, 105, 26);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  table {
+    width: 100%;
+    background-color: white;
+    text-align: left;
+    border-collapse: collapse;
+    
+  }
+  
+  th, td {
+    padding: 5px;
+    font-size: 25px;
+   
+  }
+  
+  tr:nth-child(even){
+    background-color: #ddd;
+  }
+  
+  tr:hover td{
+    background-color: #369681;
+    color: white
+  }
+  
+  thead{
+    background-color: #246355;
+    border-bottom: solid 5px #0F362d;
+    color: white;
+  }
+  
+  i {
+    font-size: 25px;
+  }
+  
+  .bxs-chevron-up-circle {
+    color: #00C9A7;
+  }
+  
+  .bxs-chevron-down-circle {
+    color: #D83121;
+  }
+  
+  .columnAction {
+    width: 40px;
+    text-align: center;
+  }
+  
+  .columnAction > button {
+    background: transparent;
+    border: none;
+  }
+  
+  .columnAmount {
+    width: 30%;
+  }
+  
+  .columnType {
+    width: 80px;
+    text-align: center;
+  }
+  
+  .setItem > button {
+    margin-top: 5%;
+    background-color: #f80505;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 34px;
+  }
+  
+  .btn-box{
+    text-align: center;
+  }
+  
+  .cart-btn{
+    outline: none;
+    border: none;
+    background: crimson;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    bottom: 30px;
+    margin: 15px 0;
+    cursor: pointer;
+  }
+  
+  .taste-header{
+  padding-top: 40px;
+  padding-bottom: 10px;
+  position: sticky;
+  top: 0;
+  background: whitesmoke;
+  }
+  
+  .util i,.user i{
+  font-size: 18px;
+  margin: 0 16px;
+  border: 1px solid crimson;
+  padding: 8px 16px;
+  color: crimson;
+  border-radius: 20px;
+  cursor: pointer;
+  }
+  .util i:active{
+  color: white;
+  background: crimson;
+  }
+  
+  .cart-toggle{
+  display: block;
+  }
+  
+  .img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  }
+  
+  .imasal {
+    max-width: 10%;
+    border-radius: 100%;
+    display:block;
+    margin:auto;
+    } 
+
+  .imag {
+    max-width: 15%;
+    border-radius: 50%;
+    display:block;
+    margin-bottom: 0%;
+    }   
+  
+  
+  
+  /* Estilo específico para la impresión */
+  @media print {
+    /* Ocultar la imagen del artículo */
+    .selectedItemsTable td img {
+      display: none;
+    }
+  }
+  
+  
+  /* Estilo específico para la impresión */
+  
+  @media print {
+    /* Ocultar elementos que no deseas imprimir */
+    body, header, .some-other-element {
+      display: none;
+    }
+  
+    /* Estilo para los elementos que deseas imprimir */
+    .selectedItemsTable {
+      display: table;
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    .selectedItemsTable th, .selectedItemsTable td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+  } 
+  
+  /* CSS */
+  .button-56 {
+    margin-top: 5%;
+    align-items: center;
+    background-color: #fee6e3;
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    /* display: flex; */
+    font-family: Inter,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 38px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+  .button-56:after {
+    background-color: #111;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 38px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: -1;
+  }
+  
+  .button-56:hover:after {
+    transform: translate(0, 0);
+  }
+  
+  .button-56:active {
+    background-color: #ffdeda;
+    outline: 0;
+  }
+  
+  .button-56:hover {
+    outline: 0;
+  }
+  
+  /* 
+  
+  @media (min-width: 768px) {
+    .button-56 {
+      padding: 0 20px;
+    }
+  }
+   */
+  
+  
+  /* https://getcssscan.com/css-buttons-examples */
+  
+  
+  /* <button class="button-74" role="button">Button 74</button> */
+  
+  /* CSS */
+  .button-74 {
+    margin-top: 5%;
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 20px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 0 16px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-74:hover {
+    background-color: #fff;
+  }
+  
+  .button-74:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+  
+  @media (min-width: 768px) {
+    .button-74 {
+      min-width: 120px;
+      padding: 0 25px;
+    }
+  }
+  
+  

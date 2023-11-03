@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="app.js" type="text/javascript" defer></script>
+  <!-- <script type="module" src="fooditem.js"></script> -->
+  <link rel="shortcut icon" href="pasteles.ico" type="image/x-icon">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+  <title>FoodTruck</title>
+</head>
+<body>
+  <main>
+
+    <img class="imag" src="pasteles.jpg" alt="Logotipo express ">
+    <h1>
+      Pasteles do Brasil
+    </h1>
+ 
+    <h2>Comanda
+      <span class="comand" id="comand"></span>
+      Items:
+      <span class="cantItems"></span>
+      Total: R$
+      <span class="total">0.00</span>
+    </h2>
+   
+    <div>
+      <a href="edit.html" target="_blank">
+        <button class="button-74" id="btnEdi">Editar</button> 
+      </a>
+      <a href="#" onclick="enviarComanda();">
+        <button class="button-74" id="Check">Env Orden</button>
+      </a>
+      <a href="comanda.html" target="_blank">
+        <button class="button-74" id="resCom">Comandas</button>
+      </a>
+      <a>
+        <button class="button-74" id="btnCer">Proximo</button>
+      </a> 
+    </div>
+
+    <div class="newItem">
+      <img class="imasal" src="images/pastel/carne.jpg" alt="Logotipo pastel de carne">
+      <img class="imasal" src="images/pastel/queijo.jpg" alt="Logotipo pastel de queijo">
+      <img class="imasal" src="images/pastel/frango.jpg" alt="Logotipo pastel de frango">
+      <img class="imasal" src="images/pastel/pastel-pizza.jpg" alt="Logotipo pastel-pizza">
+      <img class="imasal" src="images/pastel/aipim-pastel.jpg" alt="Logotipo pastel Aipim">
+      <img class="imasal" src="images/pastel/coxinha.jpg" alt="Logotipo pastel coxinha">
+      <img class="imasal" src="images/pastel/kibe.jpg" alt="Logotipo pastel kibe">
+      <img class="imasal" src="images/bebidas/caldo.jpg" alt="Logotipo caldo cana">
+    </div>
+
+    <div id="main-container" class="selectedItem">
+
+        <table>
+          <thead class="sel1">
+            <tr>
+              <th>Cant</th>
+              <th>Imagen</th>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th class="columnAction"></th> <!-- Nueva columna para el botón de eliminar -->
+            </tr>
+          </thead>
+          <tbody id="selectedItemsTableBody"></tbody>
+        </table>
+
+    </div>
+    <div>
+        <button class="button-74" role="button" id="btnClearStorage">Remover L/S</button>
+        <button class="button-74" role="button" id="exportCSVButton">Salvar CSV</button>
+    </div>
+  </main> 
+</body>
+</html>
