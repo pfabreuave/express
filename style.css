@@ -376,8 +376,8 @@
   
   /* CSS */
   .button-74 {
-    margin-top: 5%;
-    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-bottom: 1%;
     background-color: #fbeee0;
     border: 2px solid #422800;
     border-radius: 20px;
@@ -386,7 +386,7 @@
     cursor: pointer;
     display: inline-block;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 14px;
     padding: 0 16px;
     line-height: 30px;
     text-align: center;
