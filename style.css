@@ -208,7 +208,7 @@
   
   th, td {
     padding: 5px;
-    font-size: 18px;
+    font-size: 17px;
    
   }
   
@@ -327,11 +327,19 @@
     } 
 
   .imag {
-    max-width: 15%;
+    max-width: 22%;
     border-radius: 50%;
     display:block;
     margin-bottom: 0%;
-    }   
+    } 
+    
+  .zoom {
+    transition: transform .2s; 
+  }
+   
+  .zoom:hover {
+    transform: scale(2.5); 
+  }
   
   
   

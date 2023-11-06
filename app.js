@@ -2,7 +2,7 @@ const foodItem= [
     
     {
         id: 1,
-        name: 'Pastel de Carne',
+        name: 'Carne',
         category : 'pastel',
         rating : 4.3,
         price: 6,
@@ -11,7 +11,7 @@ const foodItem= [
     },
     {
         id: 2,
-        name: 'Pastel  de Queijo',
+        name: 'Queijo',
         category : 'pastel',
         rating : 4.3,
         price: 6,
@@ -20,7 +20,7 @@ const foodItem= [
     },
     {
         id: 3,
-        name: 'Pastel de Frango',
+        name: 'Frango',
         category : 'pastel',
         rating : 4.3,
         price: 6,
@@ -29,7 +29,7 @@ const foodItem= [
     },
     {
         id: 4,
-        name: 'Pastel de Pizza',
+        name: 'Pizza',
         category : 'pastel',
         rating : 4.3,
         price: 6,
@@ -38,7 +38,7 @@ const foodItem= [
     },
     {
         id: 5,
-        name: 'Pastel Aipim',
+        name: 'Aipim',
         category : 'pastel',
         rating : 4.3,
         price: 6,
@@ -47,7 +47,7 @@ const foodItem= [
     },
     {
         id: 6,
-        name: 'pastel coxinha',
+        name: 'coxinha',
         category : 'pastel',
         rating : 4.3,
         price: 6,
