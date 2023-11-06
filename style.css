@@ -17,6 +17,15 @@
     --moz-appearance:textfield;
   }
   
+  
+#miSelect {
+  width: 100%;
+}
+
+#selectedItemsTableBody {
+  width: 100%;
+}
+
   .sel1 {
     flex: 1;
   
@@ -62,7 +71,7 @@
     }
   }
   
-  /* 
+  
   @media (max-width: 768px) {
     #main-container {
         width: 80%; 
@@ -73,7 +82,7 @@
     #main-container {
         width: 70%; 
     }
-  } */
+  }
   
   body {
     /* min-height: 100vh; */
@@ -95,7 +104,7 @@
   main {
     /* background-color: rgb(255, 97, 5); */
     background-color: white;
-    width: 700px; 	
+    /* width: 700px; 	 */
     height: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -199,7 +208,7 @@
   
   th, td {
     padding: 5px;
-    font-size: 25px;
+    font-size: 18px;
    
   }
   
@@ -356,69 +365,8 @@
       text-align: left;
     }
   } 
+ 
   
-  /* CSS */
-  .button-56 {
-    margin-top: 5%;
-    align-items: center;
-    background-color: #fee6e3;
-    border: 2px solid #111;
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: #111;
-    cursor: pointer;
-    /* display: flex; */
-    font-family: Inter,sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    height: 38px;
-    justify-content: center;
-    line-height: 24px;
-    max-width: 100%;
-    padding: 0 25px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    }
-  .button-56:after {
-    background-color: #111;
-    border-radius: 8px;
-    content: "";
-    display: block;
-    height: 38px;
-    left: 0;
-    width: 100%;
-    position: absolute;
-    top: -2px;
-    transform: translate(8px, 8px);
-    transition: transform .2s ease-out;
-    z-index: -1;
-  }
-  
-  .button-56:hover:after {
-    transform: translate(0, 0);
-  }
-  
-  .button-56:active {
-    background-color: #ffdeda;
-    outline: 0;
-  }
-  
-  .button-56:hover {
-    outline: 0;
-  }
-  
-  /* 
-  
-  @media (min-width: 768px) {
-    .button-56 {
-      padding: 0 20px;
-    }
-  }
-   */
   
   
   /* https://getcssscan.com/css-buttons-examples */
@@ -437,7 +385,7 @@
     cursor: pointer;
     display: inline-block;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 10px;
     padding: 0 16px;
     line-height: 30px;
     text-align: center;
