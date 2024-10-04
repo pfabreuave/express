@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="pasteles.ico" type="image/x-icon">
+    <link rel="stylesheet" href="checkimp.css"> <script src="checkimp.js"></script>
+    <title>Factura</title>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const varComanda = urlParams.get('numeroComanda');
+    </script>
+    
+   
+</head>
+<body>
+    <div>
+        <div class="ticket">
+            <img class="imag" src="pasteles.jpg" alt="Logotipo express ">
+            <p class="centrado">Pasteles do Brasil
+                <br>Rio de Janeiro
+                <br><span style="font-weight: bold;" class="comand" id="comand"></span>
+                <br><span class="centrado" id="fecha"></span>
+            </p>
+        </div>
+        <table class="tabla" id="tabla">
+            <thead>
+                <tr>
+                    <th class="cantidad">CANT</th>
+                    <th class="producto">PRODUCTO</th>
+                    <th class="precio">R$</th>
+                </tr>
+            </thead>
+            <tbody class="centrado"></tbody>    
+        </table>
+
+        <div class="items" id="invoiceItems">
+            <!-- Los elementos de la factura se generarán aquí -->
+        </div>
+    </div>
+    <button class="oculto-impresion" onclick="imprimir()">Imprimir</button>
+
+
+    <!-- "esta es la ultima version"  09/10/2023 22:34 -->
+
+</body>
+</html>

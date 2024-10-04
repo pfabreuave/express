@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="app.js" type="text/javascript" defer></script>
+  <link rel="stylesheet" href="style.css"> <script src="edit.js"></script>
   <link rel="shortcut icon" href="pasteles.ico" type="image/x-icon">
   <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="style.css">
-  <title>Pasteles Express</title>
+  <title>Edita CMD</title>
+ 
+
 </head>
 
 <script>
@@ -20,49 +21,39 @@
 
 <body>
   <main>
-
     <img class="imag" src="pasteles.jpg" alt="Logotipo express ">
     <h1>
       Pasteles do Brasil
     </h1>
-    
-    <h4>Comanda
-      <span class="comand" id="comand"></span>
+  
+    <h3>
+      Comanda:
+      <span class="comand"></span>
       Items:
       <span class="cantItems"></span>
       Total: R$
       <span class="total">0.00</span>
-    </h4>
+    </h3>
 
-    <div>
-      <a>
-        <button class="button-74" id="getValuesButton">Env Orden</button>
-        <button class="button-74" id="refreshButton">Refresh</button>
+    <div class="marbut">
+      <a href="#" onclick="enviarComanda();">
+        <button class="button-74" id="Check">Factura</button>
       </a>
-      <a href="comanda.html" target="_blank">
-        <button class="button-74" id="resCom">Comandas</button>
-      </a>   
     </div>
 
     <div id="main-container" class="selectedItem">
-
         <table>
-          <thead class="sel1">
+          <thead>
             <tr>
               <th>Cant</th>
-              <th>Imagen</th>
+              <th>Img</th>
               <th>ID</th>
-              <th>Nombre</th>
-              <th>Precio</th>
+              <th>Nome</th>
+              <th>Preço</th>
             </tr>
           </thead>
-          <tbody id="foodTable"></tbody>
+          <tbody id="selectedItemsTableBody"></tbody>
         </table>
-
-    </div>
-    <div>
-        <button class="button-74" role="button" id="btnClearStorage">Remover L/S</button>
-        <button class="button-74" role="button" id="exportCSVButton">Salvar CSV</button>
     </div>
   </main> 
 </body>

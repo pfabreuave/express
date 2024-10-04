@@ -47,7 +47,7 @@ const foodItem= [
     },
     {
         id: 6,
-        name: 'coxinha',
+        name: 'Coxinha',
         category : 'pastel',
         rating : 4.3,
         price: 6,
@@ -72,121 +72,135 @@ const foodItem= [
         img: 'images/bebidas/caldo.jpg',
         quantity: 1
     },
+    {
+      id: 9,
+      name: 'COCA/Sabores Lata',
+      category : 'bebidas',
+      rating : 4.3,
+      price: 6,
+      img: 'images/bebidas/COCA-SABORES-LATA.jpg',
+      quantity: 1
+  },
+  {
+    id: 10,
+    name: 'Agua Natural',
+    category : 'bebidas',
+    rating : 4.3,
+    price: 3,
+    img: 'images/bebidas/agua-natural.jpg',
+    quantity: 1
+},
     
   ]
-var acumulador = 0;
-var item_acumulador = 0;
+var numeroComanda2 = 0;
 var comandElement = document.getElementById("comand");
-const btnClearStorage = document.querySelector("#btnClearStorage"); // botón para eliminar todos los registros
-btnClearStorage.addEventListener("click", () => {
-    // Llama a una función para eliminar los datos almacenados
-    clearStorage();
-  });
-// Obtén una referencia al elemento con la clase "total" en tu HTML
-const totalElement = document.querySelector(".total");
-const cantItemsElement = document.querySelector(".cantItems");
-
-// Obtén una referencia al elemento select en tu HTML
-const selectElement = document.getElementById("miSelect");
-const comandaInput = document.getElementById("Comanda");
 
 document.addEventListener("DOMContentLoaded", function() {
     const foodTable = document.getElementById("foodTable");
-  
+    var acumulador = 0;
+    var item_acumulador = 0;
+    const totalElement = document.querySelector(".total");
+    const cantItemsElement = document.querySelector(".cantItems");
+    const comandElement = document.querySelector(".comand");
+
+    // Botón para obtener y almacenar los valores
+    document.getElementById("refreshButton").addEventListener("click", function() {
+        location.reload();
+    });
+
+    // Consultar el Local Storage para obtener el último número de comanda
+    var lastPedidoNumber = parseInt(localStorage.getItem("lastPedido")) || 0;
+
+    // Función para actualizar el número de comanda en localStorage
+    function actualizarNumeroComanda() {
+        lastPedidoNumber++;
+        localStorage.setItem("lastPedido", lastPedidoNumber);
+        return lastPedidoNumber;
+    }
+
+    // Generación de filas dinámicamente
     for (let i = 0; i < foodItem.length; i++) {
-      const newRow = document.createElement("tr");
-  
-      newRow.innerHTML = `
-        <td><input autofocus type="number" class="inputField cantidadInput" style="width:40px;"></td>
-        <td><img src="${foodItem[i].img}" alt="Imagen del artículo seleccionado" style="width: 50px; height: 30px;"></td>
-        <td>${foodItem[i].id}</td>
-        <td>${foodItem[i].name}</td>
-        <td>R$${foodItem[i].price.toFixed(2)}</td>
-        <td><button class="deleteButton" title="¡Botón de eliminar!"><i class='bx bx-trash'></i></button></td> <!-- Botón de eliminar -->
-      `;
-  
-      // Agrega la nueva fila a la tabla
-      selectedItemsTableBody.appendChild(newRow);
+        var newRow = document.createElement("tr");
 
-    }
-    
-  });
+        newRow.innerHTML = `
+            <td><input autofocus type="number" class="inputField cantidadInput" style="width:40px;"></td>
+            <td><img src="${foodItem[i].img}" alt="Imagen del artículo seleccionado" style="width: 50px; height: 30px;"></td>
+            <td>${foodItem[i].id}</td>
+            <td>${foodItem[i].name}</td>
+            <td>R$${foodItem[i].price.toFixed(2)}</td>
+        `;
 
-document.addEventListener("DOMContentLoaded", function() {
-    const foodTable = document.getElementById("foodTable");
-    const selections = []; // Array para almacenar las selecciones del usuario
-  
-
-  });
-  
-
-const selectedItemsTableBody = document.getElementById("selectedItemsTableBody");
-
-// Consultar el Local Storage para obtener el último número de comanda
-var lastPedidoNumber = parseInt(localStorage.getItem("lastPedido")) || 0;
-
-// Verificar si no hay ningún ítem cargado
-if (lastPedidoNumber === 0) {
-  // Si no hay ningún pedido en el Local Storage, establecer el número de comanda inicial a 1
-  lastPedidoNumber = 1;
-  localStorage.setItem("lastPedido", lastPedidoNumber)
-} else {
-        // Si hay un pedido en el Local Storage, incrementar el número de comanda para la nueva comanda
-        lastPedidoNumber += 1;
-        //localStorage.setItem("lastPedido", lastPedidoNumber)
-        totalElement.innerHTML = '';
-        cantItemsElement.innerHTML = '';
-        acumulador = 0;
-        item_acumulador = 0;
+        // Agrega la nueva fila a la tabla
+        foodTable.appendChild(newRow);
     }
 
-// Mostrar el número de comanda en el campo de input
-comandElement.textContent = ("("+ lastPedidoNumber + ")");
+    // Función para almacenar el pedido en localStorage
+    function storeOrder() {
+        
+        // Mostrar el número de comanda en el campo de input
+        //comandElement.textContent = ("("+ lastPedidoNumber + ")");
+        const inputFields = document.querySelectorAll(".cantidadInput");
+        let orderList = []; // Lista de productos seleccionados
 
+        inputFields.forEach(function(inputField, index) {
+            const cantidad = parseInt(inputField.value);
+            
+            if (cantidad > 0) {
+                const precioTotal = foodItem[index].price * cantidad;
+                acumulador += precioTotal;
+                item_acumulador += cantidad;
 
-// Función para guardar en Local Storage
-function saveToLocalStorage(item, cantidad, precioTotal) {
-    // Obtén los pedidos existentes del Local Storage o crea un array vacío si no hay pedidos
-    const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-  
-    // Agrega la cantidad y el precioTotal al objeto del pedido
-    item.cantidad = cantidad;
-    item.precioTotal = precioTotal;
-  
-    // Agrega el nuevo pedido al array
-    pedidos.push(item);
-  
-    // Guarda el array actualizado en el Local Storage
-    localStorage.setItem("pedidos", JSON.stringify(pedidos));
-  }
-  
+                const orderItem = {
+                    id: foodItem[index].id,
+                    name: foodItem[index].name,
+                    category: foodItem[index].category,
+                    rating: foodItem[index].rating,
+                    price: foodItem[index].price,
+                    img: foodItem[index].img,
+                    quantity: foodItem[index].quantity,
+                    comanda: lastPedidoNumber, // Mismo número de comanda para todos los productos
+                    cantidad: cantidad,
+                    dispositivo: navigator.hardwareConcurrency, // Número de núcleos de CPU
+                    fechaHora: new Date().toLocaleString(),
+                    precioTotal: precioTotal.toFixed(2),
+                    rating: foodItem[index].rating
+                };
 
-// Obtén una referencia al botón "salvar" en tu HTML
-const salvarButton = document.getElementById("btnCer");
+                orderList.push(orderItem);
+            }
+        });
 
-
-function clearStorage() {
-    if (confirm("¿Seguro deseas ELIMINAR todos los registros, no quiero LLORADERA?")) {
-      // Borra los datos almacenados en localStorage
-      localStorage.removeItem("pedidos");
-      localStorage.removeItem("lastPedido");
-      
-      // Limpia la tabla en la página
-      selectedItemsTableBody.innerHTML = '';
-  
-      // Actualiza los totales para reflejar que no hay registros
-      acumulador = 0;
-      item_acumulador = 0;
-      lastPedidoNumber = 0;
-      totalElement.innerHTML = "";
-      cantItemsElement.innerHTML = "";
-      total.innerHTML = "0.00";
-  
-      // Limpia los campos de entrada
-      Comanda.value = 0;
-      //comandaInput.value = 0;
-      numeroComanda = 0;
-      location.reload();
-  
+        if (orderList.length > 0) {
+            localStorage.setItem(`pedido_${lastPedidoNumber}`, JSON.stringify(orderList));
+            //localStorage.setItem("orderList", JSON.stringify(orderList));
+            //console.log(`Pedido ${lastPedidoNumber} almacenado en local storage:`, orderList);
+            totalElement.innerHTML = acumulador.toFixed(2);
+            cantItemsElement.innerHTML = item_acumulador;
+            comandElement.innerHTML = lastPedidoNumber;
+            //alert(`Comanda ${lastPedidoNumber},  ${item_acumulador} item, R$ ${acumulador.toFixed(2)} almacenado en local storage:`, orderList);
+        } else {
+            alert("No se ha seleccionado ningún producto.");
+        }
     }
-  }
+
+    // Botón para obtener y almacenar los valores
+    const getValuesButton = document.getElementById("getValuesButton");
+    getValuesButton.addEventListener("click", function() {
+        lastPedidoNumber = actualizarNumeroComanda(); // Actualiza el número de comanda antes de almacenar
+        storeOrder(); // Almacena los productos seleccionados
+        numeroComanda2 =  lastPedidoNumber;
+        enviarComanda()
+        location.reload();
+    });
+
+    // Función para limpiar el localStorage (asociada al botón de limpiar)
+    const btnClearStorage = document.querySelector("#btnClearStorage");
+    btnClearStorage.addEventListener("click", () => {
+        clearStorage();
+    });
+
+    function clearStorage() {
+        localStorage.clear();
+        alert("Todos los registros de localStorage han sido eliminados.");
+    }
+});
