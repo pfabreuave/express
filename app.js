@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalElement = document.querySelector(".total");
     const cantItemsElement = document.querySelector(".cantItems");
     const comandElement = document.querySelector(".comand");
+    const downloadCSVButton = document.getElementById("downloadCSVButton");
 
     // Botón para obtener y almacenar los valores
     document.getElementById("refreshButton").addEventListener("click", function() {
@@ -197,6 +198,60 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnClearStorage = document.querySelector("#btnClearStorage");
     btnClearStorage.addEventListener("click", () => {
         clearStorage();
+    });
+
+    // Función para descargar los pedidos como archivo CSV
+    downloadCSVButton.addEventListener("click", function() {
+        // Recuperar todas las comandas del localStorage
+        let pedidos = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            if (key.startsWith('pedido_')) {
+                let pedido = JSON.parse(localStorage.getItem(key));
+                pedidos.push(...pedido); // Agregar los ítems del pedido a la lista general
+            }
+        }
+
+        // Ordenar los pedidos por número de comanda
+        pedidos.sort((a, b) => b.comanda - a.comanda);
+
+        // Crear el CSV
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Comanda,ID,Nombre,Categoría,Cantidad,Precio Unitario,Precio Total,Fecha y Hora,Dispositivo\n"; // Encabezado del CSV
+
+        pedidos.forEach(item => {
+            let row = [
+                item.comanda,
+                item.id,
+                item.name,
+                item.category,
+                item.cantidad,
+                item.price,
+                item.precioTotal,
+                item.fechaHora,
+                item.dispositivo
+            ].join(",");
+            csvContent += row + "\n";
+        });
+
+        // Crear un elemento de enlace para descargar el archivo CSV
+        let encodedUri = encodeURI(csvContent);
+        
+        // Obtener la fecha y hora actuales para la etiqueta del archivo
+        let now = new Date();
+        let fechaHora = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}_${now.getHours().toString().padStart(2, '0')}-${now.getMinutes().toString().padStart(2, '0')}-${now.getSeconds().toString().padStart(2, '0')}`;
+        
+        let link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `comandas_${fechaHora}.csv`);
+        document.body.appendChild(link);
+
+        // Hacer clic automáticamente en el enlace para iniciar la descarga
+        link.click();
+        
+        // Eliminar el enlace después de la descarga
+        document.body.removeChild(link);
+        alert('descarga concluida')
     });
 
     function clearStorage() {
