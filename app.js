@@ -162,7 +162,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     comanda: lastPedidoNumber, // Mismo número de comanda para todos los productos
                     cantidad: cantidad,
                     dispositivo: navigator.hardwareConcurrency, // Número de núcleos de CPU
-                    fechaHora: new Date().toLocaleString(),
+                    //fechaHora: new Date().toLocaleString(),
+                    fechaHora: new Date().toLocaleString().replace(",", "").replace(/\//g, "-").replace(/ /g, "_"), // Corregir formato de fecha y hora
                     precioTotal: precioTotal.toFixed(2),
                     rating: foodItem[index].rating
                 };
@@ -217,8 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Crear el CSV
         let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "Comanda,ID,Nombre,Categoría,Cantidad,Precio Unitario,Precio Total,Fecha y Hora,Dispositivo\n"; // Encabezado del CSV
-
+        csvContent += "Comanda,ID,Nome,Categoria,Quantidade,Preço unitário,Preço total,Data e hora,Dispositivo\n"; // Encabezado del CSV
         pedidos.forEach(item => {
             let row = [
                 item.comanda,
