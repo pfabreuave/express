@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Crear el CSV
         let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "Comanda,ID,Nome,Categoria,Quantidade,Preço unitário,Preço total,Data e hora,Dispositivo\n"; // Encabezado del CSV
+        csvContent += "Comanda,ID,Nome,Categoria,Quantidade,Preco unitario,Preco total,Data e hora,Dispositivo\n"; // Encabezado del CSV
         pedidos.forEach(item => {
             let row = [
                 item.comanda,
