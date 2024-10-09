@@ -1,3 +1,5 @@
+/*https://www.youtube.com/watch?v=bGPvf6nG6Xc 
+https://lookerstudio.google.com/navigation/reporting   */
 const foodItem= [
     
     {
@@ -218,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Crear el CSV
         let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "Comanda,ID,Nome,Categoria,Quantidade,Preco unitario,Preco total,Data e hora,Dispositivo\n"; // Encabezado del CSV
+        csvContent += "Comanda,ID,Nome,Categoria,Quantidade,Preco unitario,Venda,Data e hora,Dispositivo\n"; // Encabezado del CSV
         pedidos.forEach(item => {
             let row = [
                 item.comanda,
