@@ -111,11 +111,9 @@ document.addEventListener("DOMContentLoaded", function() {
         location.reload();
     });
 
-    // Consultar el Local Storage para obtener el último número de comanda
-    var lastPedidoNumber = parseInt(localStorage.getItem("lastPedido")) || 0;
-
-    // Función para actualizar el número de comanda en localStorage
     function actualizarNumeroComanda() {
+        lastPedidoNumber = Number(parseInt(localStorage.getItem("lastPedido")) || 0);
+        //alert(`lastPediso 2 ${lastPedidoNumber}`)
         lastPedidoNumber++;
         localStorage.setItem("lastPedido", lastPedidoNumber);
         return lastPedidoNumber;
@@ -140,11 +138,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Función para almacenar el pedido en localStorage
     function storeOrder() {
         
-        // Mostrar el número de comanda en el campo de input
-        //comandElement.textContent = ("("+ lastPedidoNumber + ")");
         const inputFields = document.querySelectorAll(".cantidadInput");
         let orderList = []; // Lista de productos seleccionados
-
         inputFields.forEach(function(inputField, index) {
             const cantidad = parseInt(inputField.value);
             
@@ -152,7 +147,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 const precioTotal = foodItem[index].price * cantidad;
                 acumulador += precioTotal;
                 item_acumulador += cantidad;
-
+                fechaHora = new Date().toLocaleString();
+                let [fecha1, hora1] = fechaHora.split(', ');
                 const orderItem = {
                     id: foodItem[index].id,
                     name: foodItem[index].name,
@@ -164,8 +160,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     comanda: lastPedidoNumber, // Mismo número de comanda para todos los productos
                     cantidad: cantidad,
                     dispositivo: navigator.hardwareConcurrency, // Número de núcleos de CPU
-                    //fechaHora: new Date().toLocaleString(),
-                    fechaHora: new Date().toLocaleString().replace(",", "").replace(/\//g, "-").replace(/ /g, "_"), // Corregir formato de fecha y hora
+                    fecha: fecha1,
+                    hora: hora1,
                     precioTotal: precioTotal.toFixed(2),
                     rating: foodItem[index].rating
                 };
@@ -176,12 +172,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (orderList.length > 0) {
             localStorage.setItem(`pedido_${lastPedidoNumber}`, JSON.stringify(orderList));
-            //localStorage.setItem("orderList", JSON.stringify(orderList));
-            //console.log(`Pedido ${lastPedidoNumber} almacenado en local storage:`, orderList);
             totalElement.innerHTML = acumulador.toFixed(2);
             cantItemsElement.innerHTML = item_acumulador;
             comandElement.innerHTML = lastPedidoNumber;
-            //alert(`Comanda ${lastPedidoNumber},  ${item_acumulador} item, R$ ${acumulador.toFixed(2)} almacenado en local storage:`, orderList);
         } else {
             alert("No se ha seleccionado ningún producto.");
         }
@@ -220,8 +213,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Crear el CSV
         let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "Comanda,ID,Nome,Categoria,Quantidade,Preco unitario,Venda,Data e hora,Dispositivo\n"; // Encabezado del CSV
+        csvContent += "Comanda,ID,Nome,Categoria,Quantidade,Preco unitario,Venda,Data,hora,Dispositivo\n"; // Encabezado del CSV
         pedidos.forEach(item => {
+
             let row = [
                 item.comanda,
                 item.id,
@@ -230,7 +224,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 item.cantidad,
                 item.price,
                 item.precioTotal,
-                item.fechaHora,
+                item.fecha,
+                item.hora,
                 item.dispositivo
             ].join(",");
             csvContent += row + "\n";
@@ -241,6 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Obtener la fecha y hora actuales para la etiqueta del archivo
         let now = new Date();
+
         let fechaHora = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}_${now.getHours().toString().padStart(2, '0')}-${now.getMinutes().toString().padStart(2, '0')}-${now.getSeconds().toString().padStart(2, '0')}`;
         
         let link = document.createElement("a");
@@ -257,7 +253,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function clearStorage() {
-        localStorage.clear();
-        alert("Todos los registros de localStorage han sido eliminados.");
+        if (confirm("¿Seguro deseas ELIMINAR todos los registros, no quiero LLORADERA?")) {
+            localStorage.removeItem("lastPedido");
+            localStorage.clear();
+            // Limpia la tabla en la página
+            selectedItemsTableBody.innerHTML = '';
+  
+            // Actualiza los totales para reflejar que no hay registros
+            acumulador = 0;
+            item_acumulador = 0;
+            lastPedidoNumber = 0;
+            totalElement.innerHTML = "";
+            cantItemsElement.innerHTML = "";
+            total.innerHTML = "0.00";
+            // Limpia los campos de entrada
+            Comanda.value = 0;
+            alert("Todos los registros de localStorage han sido eliminados.");
+        }
     }
 });
