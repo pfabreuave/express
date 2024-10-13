@@ -1,5 +1,4 @@
-/*https://www.youtube.com/watch?v=bGPvf6nG6Xc 
-https://lookerstudio.google.com/navigation/reporting   */
+
 const foodItem= [
     
     {
@@ -113,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function actualizarNumeroComanda() {
         lastPedidoNumber = Number(parseInt(localStorage.getItem("lastPedido")) || 0);
-        //alert(`lastPediso 2 ${lastPedidoNumber}`)
         lastPedidoNumber++;
         localStorage.setItem("lastPedido", lastPedidoNumber);
         return lastPedidoNumber;
@@ -124,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var newRow = document.createElement("tr");
 
         newRow.innerHTML = `
-            <td><input autofocus type="number" class="inputField cantidadInput" style="width:40px;"></td>
+            <td><input autofocus type="number" id="carga${i}" class="inputField cantidadInput" style="width:40px;"></td>
             <td><img src="${foodItem[i].img}" alt="Imagen del artículo seleccionado" style="width: 50px; height: 30px;"></td>
             <td>${foodItem[i].id}</td>
             <td>${foodItem[i].name}</td>
