@@ -97,11 +97,6 @@ const foodItem= [
 var numeroComanda2 = 0;
 var comandElement = document.getElementById("comand");
 
-document.addEventListener('deviceready', function() {
-    var serialNumber = device.serial;
-    alert("Serial Number: " + serialNumber);
-}, false);
-
 document.addEventListener("DOMContentLoaded", function() {
     const foodTable = document.getElementById("foodTable");
     var acumulador = 0;
