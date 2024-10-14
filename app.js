@@ -1,4 +1,5 @@
-
+/*https://www.youtube.com/watch?v=bGPvf6nG6Xc 
+https://lookerstudio.google.com/navigation/reporting   */
 const foodItem= [
     
     {
@@ -95,6 +96,11 @@ const foodItem= [
   ]
 var numeroComanda2 = 0;
 var comandElement = document.getElementById("comand");
+
+document.addEventListener('deviceready', function() {
+    var serialNumber = device.serial;
+    alert("Serial Number: " + serialNumber);
+}, false);
 
 document.addEventListener("DOMContentLoaded", function() {
     const foodTable = document.getElementById("foodTable");
